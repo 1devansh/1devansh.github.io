@@ -1,0 +1,108 @@
+{
+  "main": {
+    "name": "Devansh Sharma",
+    "occupation": "Head Instructor @CleverProgrammer",
+    "description": "AWS Certified Cloud Practitioner and Data Science Enthusiast",
+    "image": "Devansh.jpeg",
+    "bio": "My name is Devansh, I'm a student at Bennett University. I'm in my 4th year of B.tech in Computer Science. I'm an AWS Certified Cloud Practitioner, with interests in networks and DBMS. I love to code in Python and work on Machine Learning problems. I am starting to get into Web development recently and currently learning Django and React.",
+    "contactmessage": "Get in touch with me to receive further details.",
+    "email": "devanshsharma2099@gmail.com",
+    "phone": "+91 8587989045",
+    "address": {
+      "city": "Noida",
+      "state": "Uttar Pradesh - India"
+    },
+    "website": "https://1devansh.github.io",
+    "resumedownload": "https://drive.google.com/file/d/1qj8hd1H_CzJRKwFmucqSwXqWrAt7A15b/view?usp=sharing",
+    "social": [
+      {
+        "name": "medium",
+        "url": "https://medium.com/@devanshsharma2099",
+        "className": "fa fa-medium"
+      },
+      {
+        "name": "linkedin",
+        "url": "https://linkedin.com/in/sharmadevansh",
+        "className": "fa fa-linkedin"
+      },
+      {
+        "name": "Hackerrank",
+        "url": "https://www.hackerrank.com/ds8611",
+        "className": "fab fa-hackerrank"
+      },
+      {
+        "name": "github",
+        "url": "https://github.com/1devansh",
+        "className": "fa fa-github"
+      }
+    ]
+  },
+  "resume": {
+    "education": [
+      {
+        "school": "Bennett University",
+        "degree": "B.Tech, Computer Science",
+        "graduated": "May 2017 - May 2021",
+        "description": "GPA - 8.06"
+      }
+    ],
+    "work": [
+      {
+        "company": "UST Software India Private Limited",
+        "title": "Data Science Intern",
+        "years": "May 2020 - August 2020",
+        "description": "Deployed sentiment analysis on tweets having a particular keyword. Built a dashboard that visualises the spatial data relating to the sentiment scores. Worked with technologies like - Tweepy, Text Blob, NLTK, VADER, Plotly"
+      }
+      
+    ],
+    "skills": [
+      {
+        "name": "C++",
+        "level": "70%"
+      },
+      {
+        "name": "Python",
+        "level": "95%"
+      },
+      {
+        "name": "Git",
+        "level": "75%"
+      },
+      {
+        "name": "AWS",
+        "level": "100%"
+      },
+      {
+        "name": "MySQL",
+        "level": "80%"
+      }
+    ]
+  },
+  "portfolio": {
+    "projects": [
+      {
+        "title": "MUnite",
+        "category": "MUnite using Django",
+        "image": "MUnite.jpg",
+        "url": "https://m-unite.herokuapp.com/"
+      },
+      {
+        "title": "Video Classification using Deep Learning",
+        "category": "Video Analysis to Detect Suspicious Activity Based on Deep Learning",
+        "image": "Video.png",
+        "url": "https://www.linkedin.com/posts/sharmadevansh_deeplearning-machinelearning-videoclassification-activity-6674494250077552640-etJs"
+      },
+      {
+        "title": "Beautified CraigsList using BeautifulSoup",
+        "category": "Searching Craigslist with an Attractive UI",
+        "image": "craigslist.png",
+        "url": "https://pure-ravine-34495.herokuapp.com//"
+      }
+    ]
+  },
+  "testimonials": {
+    "testimonials": [
+      
+    ]
+  }
+}
