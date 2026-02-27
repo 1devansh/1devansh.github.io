@@ -1,18 +1,10 @@
 [
   {
-    "slug": "why-i-build-in-public",
-    "title": "Why I Build in Public",
-    "date": "2026-02-15",
-    "readingTime": "4",
-    "excerpt": "On the value of sharing your work, mistakes, and thinking process as an engineer.",
-    "tags": ["engineering", "learning"]
-  },
-  {
-    "slug": "aws-lessons-from-certification",
-    "title": "What AWS Certification Actually Taught Me",
-    "date": "2026-01-20",
+    "slug": "ai-makes-it-harder-to-learn",
+    "title": "AI Makes It Harder to Learn When You're Starting Out",
+    "date": "2026-02-20",
     "readingTime": "5",
-    "excerpt": "It's not about the badge. Here's what studying for the Cloud Practitioner exam changed about how I think about infrastructure.",
-    "tags": ["aws", "cloud", "infrastructure"]
+    "excerpt": "Copilot and ChatGPT are incredible tools. But if you lean on them before you've built real intuition, you're borrowing understanding you never actually develop.",
+    "tags": ["engineering", "ai", "learning"]
   }
 ]

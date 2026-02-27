@@ -35,6 +35,8 @@
 
   // --- Markdown helpers ---
   function parseFrontMatter(text) {
+    // Normalize line endings
+    text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
     if (!match) return { meta: {}, body: text };
     const meta = {};
@@ -43,8 +45,13 @@
       if (idx > -1) {
         const key = line.slice(0, idx).trim();
         let val = line.slice(idx + 1).trim();
+        // Strip surrounding quotes
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1);
+        }
+        // Parse arrays
         if (val.startsWith('[') && val.endsWith(']')) {
-          val = val.slice(1, -1).split(',').map(s => s.trim().replace(/"/g, ''));
+          val = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
         }
         meta[key] = val;
       }
@@ -108,7 +115,7 @@
         .then(text => {
           const { meta, body } = parseFrontMatter(text);
           postTitle.textContent = meta.title || slug;
-          document.title = (meta.title || slug) + ' — Devansh Sharma';
+          document.title = (meta.title || slug) + ' | Devansh Sharma';
           const mins = readingTime(body);
           let metaHtml = '';
           if (meta.date) metaHtml += '<span>' + meta.date + '</span>';

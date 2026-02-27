@@ -1,22 +1,22 @@
 [
   {
-    "file": "python-debugging-tip.md",
-    "title": "Python debugging: stop using print()",
-    "date": "2026-02-25"
+    "file": "virtual-threads-pinning.md",
+    "title": "Virtual threads and synchronized blocks don't mix",
+    "date": "2026-02-24"
   },
   {
-    "file": "sql-query-optimization.md",
-    "title": "The SQL query that took 40 seconds (and the fix)",
-    "date": "2026-02-10"
+    "file": "jooq-over-hibernate.md",
+    "title": "Why I reach for jOOQ over Hibernate for read-heavy services",
+    "date": "2026-02-12"
   },
   {
-    "file": "git-rebase-vs-merge.md",
-    "title": "Rebase vs merge: when it actually matters",
-    "date": "2026-01-28"
+    "file": "gc-pause-debugging.md",
+    "title": "Tracking down a 200ms GC pause in a latency-sensitive service",
+    "date": "2026-01-30"
   },
   {
-    "file": "api-design-lesson.md",
-    "title": "Design your API for the caller, not the database",
-    "date": "2026-01-15"
+    "file": "record-classes-dtos.md",
+    "title": "Java records as DTOs: the gotcha with Jackson and no-arg constructors",
+    "date": "2026-01-18"
   }
 ]
