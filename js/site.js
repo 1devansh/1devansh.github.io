@@ -3,6 +3,15 @@
 (function () {
   'use strict';
 
+  // --- Unregister old service workers ---
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      registrations.forEach(function (registration) {
+        registration.unregister();
+      });
+    });
+  }
+
   // --- Mobile nav toggle ---
   const toggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
