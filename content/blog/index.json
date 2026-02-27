@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "why-i-build-in-public",
+    "title": "Why I Build in Public",
+    "date": "2026-02-15",
+    "readingTime": "4",
+    "excerpt": "On the value of sharing your work, mistakes, and thinking process as an engineer.",
+    "tags": ["engineering", "learning"]
+  },
+  {
+    "slug": "aws-lessons-from-certification",
+    "title": "What AWS Certification Actually Taught Me",
+    "date": "2026-01-20",
+    "readingTime": "5",
+    "excerpt": "It's not about the badge. Here's what studying for the Cloud Practitioner exam changed about how I think about infrastructure.",
+    "tags": ["aws", "cloud", "infrastructure"]
+  }
+]

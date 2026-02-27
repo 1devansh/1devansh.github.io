@@ -1,10 +1,10 @@
 {
   "main": {
     "name": "Devansh Sharma",
-    "occupation": "Head Instructor @CleverProgrammer",
-    "description": "AWS Certified Cloud Practitioner and Data Science Enthusiast",
+    "occupation": "Senior Software Engineer",
+    "description": "Building scalable fintech systems and high-performance microservices",
     "image": "Devansh.jpeg",
-    "bio": "My name is Devansh, I'm a student at Bennett University. I'm in my 4th year of B.tech in Computer Science. I'm an AWS Certified Cloud Practitioner, with interests in networks and DBMS. I love to code in Python and work on Machine Learning problems. I am starting to get into Web development recently and currently learning Django and React.",
+    "bio": "Senior Software Engineer with experience building scalable fintech systems and high-performance microservices architectures. Currently at Paytm, working on merchant onboarding systems handling 500+ TPS and supporting 20M+ merchants. Previously at Addepar, where I built and maintained a trading application composed of 12+ microservices from initial development through live deployment. I care about clean architecture, performance optimization, and test-driven development.",
     "contactmessage": "Get in touch with me to receive further details.",
     "email": "devanshsharma2099@gmail.com",
     "phone": "+91 8587989045",
@@ -13,7 +13,7 @@
       "state": "Uttar Pradesh - India"
     },
     "website": "https://1devansh.github.io",
-    "resumedownload": "https://drive.google.com/file/d/1qj8hd1H_CzJRKwFmucqSwXqWrAt7A15b/view?usp=sharing",
+    "resumedownload": "https://drive.google.com/file/d/1VFIQJqT7L5KiQRdvgNozkk0U0XXY4Xzl/view?usp=sharing",
     "social": [
       {
         "name": "medium",
@@ -41,40 +41,53 @@
     "education": [
       {
         "school": "Bennett University",
-        "degree": "B.Tech, Computer Science",
-        "graduated": "May 2017 - May 2021",
-        "description": "GPA - 8.06"
+        "degree": "B.Tech, Computer Science Engineering",
+        "graduated": "Greater Noida, Uttar Pradesh",
+        "description": ""
       }
     ],
     "work": [
       {
-        "company": "UST Software India Private Limited",
-        "title": "Data Science Intern",
-        "years": "May 2020 - August 2020",
-        "description": "Deployed sentiment analysis on tweets having a particular keyword. Built a dashboard that visualises the spatial data relating to the sentiment scores. Worked with technologies like - Tweepy, Text Blob, NLTK, VADER, Plotly"
+        "company": "Paytm",
+        "title": "Senior Software Engineer",
+        "years": "May 2025 - Present",
+        "description": "Developing and maintaining highly available, read-optimized microservices for merchant onboarding systems handling 500+ TPS and supporting 20M+ merchants. Built a DB-driven dynamic preference framework reducing development effort by ~70%. Contributed to marquee merchant acquisition, impacting GMV by ~$6M/year."
+      },
+      {
+        "company": "Addepar",
+        "title": "Software Development Engineer II",
+        "years": "Jan 2021 - April 2025",
+        "description": "Built and maintained a trading application composed of 12+ microservices from initial development through beta and live deployment. Reduced rebalancing workflow time by 40% by minimizing network calls and converting a microservice into a shared library. Implemented TDD maintaining 80%+ code coverage. Mentored a team of 3 junior developers."
       }
-      
     ],
     "skills": [
       {
-        "name": "C++",
-        "level": "70%"
-      },
-      {
-        "name": "Python",
+        "name": "Java",
         "level": "95%"
       },
       {
-        "name": "Git",
-        "level": "75%"
+        "name": "Python",
+        "level": "85%"
+      },
+      {
+        "name": "Spring Boot",
+        "level": "90%"
+      },
+      {
+        "name": "Kafka",
+        "level": "80%"
       },
       {
         "name": "AWS",
-        "level": "100%"
+        "level": "85%"
       },
       {
-        "name": "MySQL",
+        "name": "Docker/K8s",
         "level": "80%"
+      },
+      {
+        "name": "PostgreSQL",
+        "level": "85%"
       }
     ]
   },
@@ -101,8 +114,6 @@
     ]
   },
   "testimonials": {
-    "testimonials": [
-      
-    ]
+    "testimonials": []
   }
 }
