@@ -3,253 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Devansh Sharma. Senior Software Engineer. Scalable fintech systems, microservices, and distributed architecture.">
-  <title>Devansh Sharma. Senior Software Engineer</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Devansh Sharma, backend engineer at Paytm. Merchant onboarding for 20M+ merchants at 500+ TPS; previously four years on trading and rebalancing at Addepar.">
+  <meta name="color-scheme" content="light dark">
+  <title>Devansh Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
+  <main class="page enter">
 
-  <!-- Navigation -->
-  <nav class="site-nav" id="nav" role="navigation" aria-label="Main navigation">
-    <div class="container nav-inner">
-      <a href="/" class="nav-logo">DS</a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="#notes">Notes</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
+    <header class="intro" style="--i:0">
+      <div class="intro__head">
+        <img class="avatar" src="images/Devansh.jpeg" alt="Devansh Sharma" width="96" height="96">
+        <div>
+          <h1 class="intro__name">Devansh Sharma</h1>
+          <p class="intro__role" style="margin:0">Backend engineer</p>
+        </div>
+      </div>
+      <p>I build backend systems for payments and trading. At Paytm I work on merchant onboarding for <span class="fig">20M+</span> merchants at <span class="fig">500+ TPS</span>. Before that, I spent four years at Addepar building a trading and rebalancing platform from the ground up.</p>
+      <p class="muted">I'd rather build something simple that scales reliably than something clever that breaks under pressure.</p>
+      <nav class="links" aria-label="Contact">
+        <a href="mailto:devanshsharma2099@gmail.com">Email</a>
+        <a href="https://github.com/1devansh" target="_blank" rel="noopener">GitHub<span class="arrow">↗</span></a>
+        <a href="https://linkedin.com/in/sharmadevansh" target="_blank" rel="noopener">LinkedIn<span class="arrow">↗</span></a>
+        <a href="https://drive.google.com/file/d/1VFIQJqT7L5KiQRdvgNozkk0U0XXY4Xzl/view?usp=sharing" target="_blank" rel="noopener">Resume<span class="arrow">↗</span></a>
+      </nav>
+    </header>
+
+    <section class="section" id="work" style="--i:1" aria-labelledby="work-title">
+      <h2 class="section__title" id="work-title">Work</h2>
+      <ul class="list">
+        <li>
+          <details class="item">
+            <summary class="row">
+              <span class="row__title">Merchant onboarding</span><span class="row__dots"></span><span class="row__meta">Paytm, now</span><span class="plus" aria-hidden="true"></span>
+              <span class="row__desc">Read-optimized services behind onboarding for 20M+ merchants at 500+ TPS. A configuration framework cut development effort by ~70%.</span>
+            </summary>
+            <div class="more">
+              <dl>
+                <dt>Problem</dt><dd>Paytm needed highly available, read-optimized microservices to support merchant onboarding at massive scale: 20M+ merchants, 500+ TPS.</dd>
+                <dt>Approach</dt><dd>Built a DB-driven dynamic preference framework that made onboarding flows configurable without code changes, reducing overall development effort by ~70%. Enabled customization of DCC markup values and contributed to marquee merchant acquisition.</dd>
+                <dt>Learned</dt><dd>At this scale, configurability beats custom code. A well-designed framework that lets the business move without engineering bottlenecks has outsized impact: ~$6M/year GMV in this case.</dd>
+              </dl>
+              <div class="stack"><span>Java</span><span>Spring Boot</span><span>Microservices</span><span>PostgreSQL</span><span>Kafka</span></div>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="item">
+            <summary class="row">
+              <span class="row__title">Trading and rebalancing</span><span class="row__dots"></span><span class="row__meta">Addepar, 4 years</span><span class="plus" aria-hidden="true"></span>
+              <span class="row__desc">12+ microservices that turn models, restrictions and tax rules into trades, in under 300ms per input.</span>
+            </summary>
+            <div class="more">
+              <dl>
+                <dt>Problem</dt><dd>Advisors and traders needed an automated system to generate trades for portfolios based on models, restrictions, equivalents and tax optimizations, with sub-300ms processing time per input.</dd>
+                <dt>Approach</dt><dd>Built 12+ microservices from initial development through live deployment. Designed a compute DAG architecture to decompose complex workflows into reusable components. Reduced rebalancing workflow time by 40% by converting a microservice into a shared library. Secured PII across 3+ schemas using Pgcrypto.</dd>
+                <dt>Learned</dt><dd>DAG-based architecture is powerful for decomposing complex financial workflows. Independent monitoring of compute components made debugging production issues dramatically faster. TDD with 80%+ coverage kept the system stable through years of iteration.</dd>
+              </dl>
+              <div class="stack"><span>Java</span><span>Microservices</span><span>DAG architecture</span><span>PostgreSQL</span><span>Pgcrypto</span><span>Sumologic</span></div>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="item">
+            <summary class="row">
+              <span class="row__title">Nutrition store and gym platform</span><span class="row__dots"></span><span class="row__meta">Django, AWS</span><span class="plus" aria-hidden="true"></span>
+              <span class="row__desc">An end-to-end platform for supplements and memberships, with a loyalty system that lifted repeat purchases by 60%.</span>
+            </summary>
+            <div class="more">
+              <dl>
+                <dt>Problem</dt><dd>A health and fitness company needed a unified platform integrating supplement sales, gym memberships and analytics, with loyalty features to drive retention.</dd>
+                <dt>Approach</dt><dd>Developed the entire Django application end to end: backend APIs, admin panel, customer flows. Designed a “FitPoints” loyalty system that increased retention and repeat purchases by 60%. Managed the full AWS deployment (EC2, RDS, S3, SES).</dd>
+                <dt>Learned</dt><dd>End-to-end ownership forces you to think about the full picture, from database schema to email deliverability. Small product features can have outsized business impact.</dd>
+              </dl>
+              <div class="stack"><span>Python</span><span>Django</span><span>AWS</span><span>EC2</span><span>RDS</span><span>S3</span><span>SES</span></div>
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="item">
+            <summary class="row">
+              <span class="row__title">Portfolio management system</span><span class="row__dots"></span><span class="row__meta">Spring Security</span><span class="plus" aria-hidden="true"></span>
+              <span class="row__desc">Entitlements, Okta SSO and JWT auth for a multi-tenant investment platform.</span>
+            </summary>
+            <div class="more">
+              <dl>
+                <dt>Problem</dt><dd>Investors needed a system to manage and analyze portfolios across time segments with key financial metrics: EBITDA, equity, cash flow, profit and margin assets.</dd>
+                <dt>Approach</dt><dd>Developed core services including entitlements and authentication. Integrated Okta SSO with client accounts. Implemented JWT-based auth via Spring Security and designed the password recovery workflow.</dd>
+                <dt>Learned</dt><dd>Authentication and entitlements are deceptively complex in multi-tenant financial systems. Getting the security layer right early saves enormous pain later.</dd>
+              </dl>
+              <div class="stack"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>Okta</span><span>JWT</span></div>
+            </div>
+          </details>
+        </li>
       </ul>
-    </div>
-  </nav>
+    </section>
 
-  <!-- Hero -->
-  <header class="hero" id="home">
-    <div class="container">
-      <p class="hero-greeting">Hi, I'm Devansh Sharma.</p>
-      <h1 class="hero-headline">I build scalable systems<br>that power millions.</h1>
-      <p class="hero-sub">Senior Software Engineer building high-performance fintech systems and microservices architectures. I care about clean architecture, performance optimization, and shipping things that matter at scale.</p>
-      <div class="hero-cta">
-        <a href="https://drive.google.com/file/d/1VFIQJqT7L5KiQRdvgNozkk0U0XXY4Xzl/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">Download Resume</a>
-        <a href="blog.html" class="btn btn-secondary">Read My Writing</a>
+    <section class="section" id="projects" style="--i:3" aria-labelledby="projects-title">
+      <h2 class="section__title" id="projects-title">Side projects</h2>
+      <ul class="list">
+        <li><a class="item" href="https://m-unite.herokuapp.com/" target="_blank" rel="noopener"><span class="row"><span class="row__title">MUnite<span class="arrow">↗</span></span><span class="row__dots"></span><span class="row__meta">Django</span></span><span class="row__desc" style="display:block">A place for university students to connect, collaborate and share resources.</span></a></li>
+        <li><a class="item" href="https://www.linkedin.com/posts/sharmadevansh_deeplearning-machinelearning-videoclassification-activity-6674494250077552640-etJs" target="_blank" rel="noopener"><span class="row"><span class="row__title">Suspicious activity detection<span class="arrow">↗</span></span><span class="row__dots"></span><span class="row__meta">TensorFlow</span></span><span class="row__desc" style="display:block">Classifies video frames with CNNs and temporal analysis to flag anomalies.</span></a></li>
+        <li><a class="item" href="https://pure-ravine-34495.herokuapp.com/" target="_blank" rel="noopener"><span class="row"><span class="row__title">Beautified Craigslist<span class="arrow">↗</span></span><span class="row__dots"></span><span class="row__meta">Flask</span></span><span class="row__desc" style="display:block">Scraped listings with a better search, filtering and clearer hierarchy.</span></a></li>
+      </ul>
+    </section>
+
+    <section class="section" id="about" style="--i:4" aria-labelledby="about-title">
+      <h2 class="section__title" id="about-title">About</h2>
+      <div class="intro">
+        <p>I studied Computer Science at Bennett University, where I got hooked on how systems work beneath the surface, from distributed architectures to the infrastructure that holds everything together at scale.</p>
+        <p>Four years at Addepar taught me that the hardest part of engineering isn't writing code. It's designing systems that stay maintainable as they grow. I approach problems from first principles, and long term I'm focused on distributed systems, platform engineering, and infrastructure that teams can depend on.</p>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title">About</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>I studied Computer Science at Bennett University, where I got hooked on understanding how systems work beneath the surface, from distributed architectures to the infrastructure that holds everything together at scale.</p>
-          <p>I spent four years at Addepar building a trading and rebalancing platform from the ground up. 12+ microservices, DAG-based compute architecture, and deep performance work across the entire stack. That experience taught me that the hardest part of engineering isn't writing code. It's designing systems that stay maintainable as they grow.</p>
-          <p>Now at Paytm, I'm working on merchant onboarding systems that handle 500+ TPS and support 20M+ merchants.</p>
-          <p>I approach problems by breaking them down to first principles. I'd rather build something simple that scales reliably than something clever that breaks under pressure. Long-term, I'm focused on distributed systems, platform engineering, and building infrastructure that teams can depend on.</p>
-        </div>
-        <div class="about-photo">
-          <img src="images/Devansh.jpeg" alt="Devansh Sharma" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
+    <section class="section" id="skills" style="--i:5" aria-labelledby="skills-title">
+      <h2 class="section__title" id="skills-title">Toolbox</h2>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Java, Python, Spring Boot, Django, Quarkus, Vert.x, Hibernate, jOOQ</dd>
+        <dt>Cloud</dt><dd>AWS (EC2, S3, SNS, SQS, RDS, SES), Docker, Kubernetes</dd>
+        <dt>Data</dt><dd>Kafka, PostgreSQL, MySQL, Sumologic</dd>
+        <dt>Testing</dt><dd>Mockito, JUnit, TestNG, TDD</dd>
+        <dt>Architecture</dt><dd>Microservices, DAG architecture, REST APIs, multithreading</dd>
+        <dt>AI engineering</dt><dd>LLM APIs, agents and tool calling, MCP</dd>
+        <dt>Machine learning</dt><dd>PyTorch, TensorFlow, OpenCV</dd>
+        <dt>AI tools</dt><dd>Claude Code, Cursor, GitHub Copilot, ChatGPT, Claude</dd>
+      </dl>
+    </section>
 
-  <!-- Work / Projects -->
-  <section class="section section-alt" id="work">
-    <div class="container">
-      <h2 class="section-title">Work</h2>
-      <p class="section-intro">Systems I've built professionally. Real scale, real constraints, real impact.</p>
-      <div class="projects-grid">
+    <section class="section" id="contact" style="--i:6" aria-labelledby="contact-title">
+      <h2 class="section__title" id="contact-title">Contact</h2>
+      <p>The best way to reach me is <a class="u" href="mailto:devanshsharma2099@gmail.com">devanshsharma2099@gmail.com</a>. I'm also on <a class="u" href="https://github.com/1devansh" target="_blank" rel="noopener">GitHub</a>, <a class="u" href="https://linkedin.com/in/sharmadevansh" target="_blank" rel="noopener">LinkedIn</a>, <a class="u" href="https://medium.com/@devanshsharma2099" target="_blank" rel="noopener">Medium</a> and <a class="u" href="https://www.hackerrank.com/ds8611" target="_blank" rel="noopener">HackerRank</a>.</p>
+    </section>
 
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>Merchant Onboarding Platform, Paytm</h3>
-            <p class="project-problem">Paytm needed highly available, read-optimized microservices to support merchant onboarding at massive scale. 20M+ merchants, 500+ TPS.</p>
-            <p class="project-approach">Built a DB-driven dynamic preference framework that made onboarding flows configurable without code changes, reducing overall development effort by ~70%. Enabled customization of DCC markup values and contributed to marquee merchant acquisition.</p>
-            <div class="project-tech">
-              <span>Java</span><span>Spring Boot</span><span>Microservices</span><span>PostgreSQL</span><span>Kafka</span>
-            </div>
-            <p class="project-learning">At this scale, configurability beats custom code. A well-designed framework that lets the business move without engineering bottlenecks has outsized impact. ~$6M/year GMV in this case.</p>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>Trading & Rebalancing System, Addepar</h3>
-            <p class="project-problem">Advisors and traders needed an automated system to generate trades for portfolios based on models, restrictions, equivalents, and tax optimizations, with sub-300ms processing time per input.</p>
-            <p class="project-approach">Built 12+ microservices from initial development through live deployment. Designed a compute DAG architecture to decompose complex workflows into reusable components. Reduced rebalancing workflow time by 40% by converting a microservice into a shared library. Secured PII across 3+ schemas using Pgcrypto.</p>
-            <div class="project-tech">
-              <span>Java</span><span>Microservices</span><span>DAG Architecture</span><span>PostgreSQL</span><span>Pgcrypto</span><span>Sumologic</span>
-            </div>
-            <p class="project-learning">DAG-based architecture is powerful for decomposing complex financial workflows. Independent monitoring of compute components made debugging production issues dramatically faster. TDD with 80%+ coverage kept the system stable through years of iteration.</p>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>Nutrition Store & Gym Membership Platform</h3>
-            <p class="project-problem">A health & fitness company needed a unified platform integrating supplement sales, gym memberships, and analytics, with loyalty features to drive retention.</p>
-            <p class="project-approach">Developed the entire Django application end-to-end: backend APIs, admin panel, customer flows. Designed a "FitPoints" loyalty system that increased retention and repeat purchases by 60%. Managed full AWS deployment (EC2, RDS, S3, SES).</p>
-            <div class="project-tech">
-              <span>Python</span><span>Django</span><span>AWS</span><span>EC2</span><span>RDS</span><span>S3</span><span>SES</span>
-            </div>
-            <p class="project-learning">End-to-end ownership forces you to think about the full picture, from database schema to email deliverability. The loyalty system taught me that small product features can have outsized business impact.</p>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>Portfolio Management System</h3>
-            <p class="project-problem">Investors needed a system to manage and analyze portfolios across time segments with key financial metrics (EBITDA, Equity, Cash Flow, Profit, Margin Assets).</p>
-            <p class="project-approach">Developed core services including entitlements and authentication. Integrated Okta for seamless SSO with client accounts. Implemented JWT-based auth via Spring Security and designed the password recovery workflow.</p>
-            <div class="project-tech">
-              <span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>Okta</span><span>JWT</span>
-            </div>
-            <p class="project-learning">Authentication and entitlements are deceptively complex in multi-tenant financial systems. Getting the security layer right early saves enormous pain later.</p>
-          </div>
-        </article>
-
-      </div>
-
-      <h3 class="side-projects-heading" style="margin-top: 3rem; margin-bottom: 1.5rem; font-size: 1.25rem;">Side Projects</h3>
-      <div class="projects-grid">
-
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>MUnite</h3>
-            <p class="project-problem">University students needed a centralized platform to connect, collaborate, and share resources.</p>
-            <p class="project-approach">Built a full-stack web application using Django with user authentication, real-time features, and a clean UI.</p>
-            <div class="project-tech">
-              <span>Django</span><span>Python</span><span>PostgreSQL</span><span>Heroku</span>
-            </div>
-            <a href="https://m-unite.herokuapp.com/" class="project-link" target="_blank" rel="noopener">View Project →</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>Video Classification for Suspicious Activity</h3>
-            <p class="project-problem">Automating detection of suspicious activity in video feeds using deep learning.</p>
-            <p class="project-approach">Developed a classification pipeline using CNNs and temporal analysis to process video frames and flag anomalies.</p>
-            <div class="project-tech">
-              <span>Python</span><span>TensorFlow</span><span>OpenCV</span><span>Deep Learning</span>
-            </div>
-            <a href="https://www.linkedin.com/posts/sharmadevansh_deeplearning-machinelearning-videoclassification-activity-6674494250077552640-etJs" class="project-link" target="_blank" rel="noopener">View Project →</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-body">
-            <h3>Beautified Craigslist</h3>
-            <p class="project-problem">Craigslist's interface is functional but dated. Built a better search experience with a modern UI on top of real data.</p>
-            <p class="project-approach">Used BeautifulSoup to scrape listings and built a clean frontend with filtering and better visual hierarchy.</p>
-            <div class="project-tech">
-              <span>Python</span><span>BeautifulSoup</span><span>Flask</span><span>Heroku</span>
-            </div>
-            <a href="https://pure-ravine-34495.herokuapp.com/" class="project-link" target="_blank" rel="noopener">View Project →</a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Notes / Learnings -->
-  <section class="section" id="notes">
-    <div class="container">
-      <h2 class="section-title">Notes & Learnings</h2>
-      <p class="section-intro">Short-form insights, technical learnings, and observations. Thinking out loud.</p>
-      <div id="notes-list" class="notes-list">
-        <p class="loading-msg">Loading notes...</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resume -->
-  <section class="section section-alt" id="resume">
-    <div class="container">
-      <h2 class="section-title">Resume</h2>
-      <div class="resume-content">
-        <div class="resume-summary">
-          <p>Senior Software Engineer with experience building scalable fintech systems and high-performance microservices architectures. Currently at Paytm building merchant onboarding systems at 500+ TPS scale. Previously at Addepar, where I built a trading platform from scratch across 12+ microservices. Strong emphasis on performance optimization, TDD, and clean architecture.</p>
-          <a href="https://drive.google.com/file/d/1VFIQJqT7L5KiQRdvgNozkk0U0XXY4Xzl/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">Download Resume (PDF)</a>
-          <p class="resume-updated">Last updated: February 2026</p>
-        </div>
-        <div class="resume-skills">
-          <h3>Skills</h3>
-          <div class="skills-group">
-            <div>
-              <h4>Languages & Frameworks</h4>
-              <p>Java, Python, Spring Boot, Django, Quarkus, Vert.x, Hibernate, jOOQ</p>
-            </div>
-            <div>
-              <h4>Cloud & DevOps</h4>
-              <p>AWS (EC2, S3, SNS, SQS, RDS, SES), Docker, Kubernetes</p>
-            </div>
-            <div>
-              <h4>Data & Messaging</h4>
-              <p>Kafka, PostgreSQL, MySQL, Sumologic</p>
-            </div>
-            <div>
-              <h4>Testing</h4>
-              <p>Mockito, JUnit, TestNG, TDD</p>
-            </div>
-            <div>
-              <h4>Architecture</h4>
-              <p>Microservices, DAG Architecture, RESTful APIs, Multithreading</p>
-            </div>
-            <div>
-              <h4>Tools</h4>
-              <p>Git, Gradle, Maven</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-intro">Want to work together or just say hello? Reach out.</p>
-      <div class="contact-links">
-        <a href="mailto:devanshsharma2099@gmail.com" class="contact-item">
-          <span class="contact-label">Email</span>
-          <span>devanshsharma2099@gmail.com</span>
-        </a>
-        <a href="https://github.com/1devansh" class="contact-item" target="_blank" rel="noopener">
-          <span class="contact-label">GitHub</span>
-          <span>1devansh</span>
-        </a>
-        <a href="https://linkedin.com/in/sharmadevansh" class="contact-item" target="_blank" rel="noopener">
-          <span class="contact-label">LinkedIn</span>
-          <span>sharmadevansh</span>
-        </a>
-        <a href="https://medium.com/@devanshsharma2099" class="contact-item" target="_blank" rel="noopener">
-          <span class="contact-label">Medium</span>
-          <span>@devanshsharma2099</span>
-        </a>
-        <a href="https://www.hackerrank.com/ds8611" class="contact-item" target="_blank" rel="noopener">
-          <span class="contact-label">HackerRank</span>
-          <span>ds8611</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Devansh Sharma. Built with plain HTML, CSS, and JS.</p>
-    </div>
-  </footer>
+    <footer class="footer" style="--i:7">
+      <span>&copy; 2026 Devansh Sharma</span>
+      <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top</a>
+    </footer>
+  </main>
 
   <script src="js/marked.min.js"></script>
-  <script src="js/site.js"></script>
+  <script src="js/site.js?v=4"></script>
 </body>
 </html>

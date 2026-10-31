@@ -3,51 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Blog — Devansh Sharma. Writing about engineering, systems, and learning.">
-  <title>Blog — Devansh Sharma</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Writing by Devansh Sharma on backend engineering and systems.">
+  <meta name="color-scheme" content="light dark">
+  <title>Writing | Devansh Sharma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
-
-  <nav class="site-nav" id="nav" role="navigation" aria-label="Main navigation">
-    <div class="container nav-inner">
-      <a href="/" class="nav-logo">DS</a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#work">Work</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="/#notes">Notes</a></li>
-        <li><a href="/#resume">Resume</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="page-header">
-    <div class="container">
-      <h1>Blog</h1>
-      <p class="section-intro">Long-form writing about engineering, systems, and things I'm figuring out.</p>
-    </div>
-  </div>
-
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div id="blog-list" class="blog-list">
-        <p class="loading-msg">Loading posts...</p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Devansh Sharma. Built with plain HTML, CSS, and JS.</p>
-    </div>
-  </footer>
-
+  <main class="page enter">
+    <a class="back" href="/" style="--i:0"><span class="back__arrow">←</span> Devansh Sharma</a>
+    <header style="--i:1">
+      <h1 class="page-title">Writing</h1>
+      <p class="page-sub">Longer pieces on backend engineering and systems. Short notes live on the <a class="u" href="/#writing">home page</a>.</p>
+    </header>
+    <ul class="list" id="blog-rows" style="--i:2">
+      <li class="loading">Loading…</li>
+    </ul>
+    <footer class="footer" style="--i:3">
+      <span>&copy; 2026 Devansh Sharma</span>
+      <a href="/">Home</a>
+    </footer>
+  </main>
   <script src="js/marked.min.js"></script>
-  <script src="js/site.js"></script>
+  <script src="js/site.js?v=4"></script>
 </body>
 </html>

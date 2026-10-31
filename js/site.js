@@ -1,184 +1,132 @@
-/* ===== Site JS — Minimal, no frameworks ===== */
-
+/* Site script: writing line-up, blog list, post page, reveals, live counter. No frameworks. */
 (function () {
   'use strict';
 
-  // --- Unregister old service workers ---
+  // Old service workers from earlier versions of the site
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations().then(function (registrations) {
-      registrations.forEach(function (registration) {
-        registration.unregister();
-      });
-    });
+    navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); });
   }
 
-  // --- Mobile nav toggle ---
-  const toggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  if (toggle && navLinks) {
-    toggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+  // ---------- helpers ----------
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-
-  // --- Scroll reveal ---
-  const reveals = document.querySelectorAll('.reveal');
-  if (reveals.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+  function fmtDate(d) {
+    var t = new Date(d + 'T00:00:00');
+    if (isNaN(t)) return esc(d);
+    return t.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
   }
-
-  // --- Markdown helpers ---
+  function tagsText(tags) {
+    if (!tags) return '';
+    return (Array.isArray(tags) ? tags : [tags]).join(', ');
+  }
   function parseFrontMatter(text) {
-    // Normalize line endings
-    text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-    const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-    if (!match) return { meta: {}, body: text };
-    const meta = {};
-    match[1].split('\n').forEach(line => {
-      const idx = line.indexOf(':');
-      if (idx > -1) {
-        const key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim();
-        // Strip surrounding quotes
-        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-          val = val.slice(1, -1);
-        }
-        // Parse arrays
-        if (val.startsWith('[') && val.endsWith(']')) {
-          val = val.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
-        }
-        meta[key] = val;
+    text = text.replace(/\r\n?/g, '\n');
+    var m = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    if (!m) return { meta: {}, body: text };
+    var meta = {};
+    m[1].split('\n').forEach(function (line) {
+      var i = line.indexOf(':');
+      if (i < 0) return;
+      var key = line.slice(0, i).trim();
+      var val = line.slice(i + 1).trim();
+      if ((val[0] === '"' && val.slice(-1) === '"') || (val[0] === "'" && val.slice(-1) === "'")) val = val.slice(1, -1);
+      if (val[0] === '[' && val.slice(-1) === ']') {
+        val = val.slice(1, -1).split(',').map(function (s) { return s.trim().replace(/^["']|["']$/g, ''); });
       }
+      meta[key] = val;
     });
-    return { meta, body: match[2] };
+    return { meta: meta, body: m[2] };
+  }
+  function readingTime(text) { return Math.max(1, Math.ceil(text.trim().split(/\s+/).length / 200)); }
+  function md(text) { return window.marked ? marked.parse(text) : '<p>' + esc(text) + '</p>'; }
+
+  function postRow(p) {
+    return '<li><a class="item" href="post.html?slug=' + encodeURIComponent(p.slug) + '">' +
+      '<span class="row"><span class="row__title">' + esc(p.title) + '</span>' +
+      '<span class="row__dots"></span><span class="row__meta">' + fmtDate(p.date) + '</span></span>' +
+      (p.excerpt ? '<span class="row__desc" style="display:block">' + esc(p.excerpt) + '</span>' : '') +
+      '</a></li>';
+  }
+  function noteRow(n) {
+    var tags = tagsText(n.tags);
+    return '<li><details class="item"><summary class="row">' +
+      '<span class="row__title">' + esc(n.title) + '</span>' +
+      '<span class="row__dots"></span><span class="row__meta">' + fmtDate(n.date) + '</span>' +
+      '<span class="plus" aria-hidden="true"></span>' +
+      '</summary><div class="note">' + md(n.body) +
+      (tags ? '<p class="tags">' + esc(tags) + '</p>' : '') + '</div></details></li>';
   }
 
-  function readingTime(text) {
-    const words = text.trim().split(/\s+/).length;
-    return Math.max(1, Math.ceil(words / 200));
+  function loadPosts() {
+    return fetch('content/blog/index.json').then(function (r) { return r.json(); }).catch(function () { return []; });
+  }
+  function loadNotes() {
+    return fetch('content/notes/index.json').then(function (r) { return r.json(); }).then(function (notes) {
+      return Promise.all(notes.map(function (n) {
+        return fetch('content/notes/' + n.file).then(function (r) { return r.text(); }).then(function (t) {
+          var fm = parseFrontMatter(t);
+          return Object.assign({}, n, fm.meta, { body: fm.body });
+        });
+      }));
+    }).catch(function () { return []; });
+  }
+  function byDate(a, b) { return new Date(b.date) - new Date(a.date); }
+
+  // ---------- home: writing line-up ----------
+  var writing = document.getElementById('writing-rows');
+  if (writing) {
+    Promise.all([loadPosts(), loadNotes()]).then(function (res) {
+      var items = res[0].map(function (p) { return Object.assign({ kind: 'post' }, p); })
+        .concat(res[1].map(function (n) { return Object.assign({ kind: 'note' }, n); }))
+        .sort(byDate);
+      writing.innerHTML = items.length
+        ? items.map(function (it) { return it.kind === 'post' ? postRow(it) : noteRow(it); }).join('')
+        : '<li class="loading">Nothing published yet.</li>';
+    });
   }
 
-  function renderTags(tags) {
-    if (!tags || !Array.isArray(tags)) return '';
-    return '<div class="blog-tags">' + tags.map(t => '<span>' + t + '</span>').join('') + '</div>';
+  // ---------- blog index ----------
+  var blogRows = document.getElementById('blog-rows');
+  if (blogRows) {
+    loadPosts().then(function (posts) {
+      blogRows.innerHTML = posts.length
+        ? posts.sort(byDate).map(postRow).join('')
+        : '<li class="loading">No posts yet.</li>';
+    });
   }
 
-  // --- Blog index ---
-  const blogList = document.getElementById('blog-list');
-  if (blogList) {
-    fetch('content/blog/index.json')
-      .then(r => r.json())
-      .then(posts => {
-        if (!posts.length) {
-          blogList.innerHTML = '<p class="loading-msg">No posts yet. Check back soon.</p>';
-          return;
-        }
-        blogList.innerHTML = posts
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .map(post => {
-            const tags = post.tags ? renderTags(post.tags) : '';
-            return `<a href="post.html?slug=${post.slug}" class="blog-item">
-              <h2>${post.title}</h2>
-              <div class="blog-meta">
-                <span>${post.date}</span>
-                <span>${post.readingTime || '?'} min read</span>
-              </div>
-              <p class="blog-excerpt">${post.excerpt || ''}</p>
-              ${tags}
-            </a>`;
-          }).join('');
-      })
-      .catch(() => {
-        blogList.innerHTML = '<p class="loading-msg">No posts yet. Check back soon.</p>';
-      });
-  }
-
-  // --- Blog post ---
-  const postContent = document.getElementById('post-content');
-  const postTitle = document.getElementById('post-title');
-  const postMeta = document.getElementById('post-meta');
-  if (postContent && postTitle) {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
-    if (slug) {
-      fetch('content/blog/' + slug + '.md')
-        .then(r => {
-          if (!r.ok) throw new Error('Not found');
-          return r.text();
+  // ---------- single post ----------
+  var postBody = document.getElementById('post-content');
+  var postTitle = document.getElementById('post-title');
+  var postMeta = document.getElementById('post-meta');
+  if (postBody && postTitle) {
+    var slug = new URLSearchParams(location.search).get('slug');
+    if (!slug) {
+      postTitle.textContent = 'Post not found';
+      postBody.innerHTML = '<p>No post was named. <a href="blog.html">See all posts</a>.</p>';
+    } else {
+      fetch('content/blog/' + encodeURIComponent(slug) + '.md')
+        .then(function (r) { if (!r.ok) throw new Error('missing'); return r.text(); })
+        .then(function (t) {
+          var fm = parseFrontMatter(t);
+          var title = fm.meta.title || slug;
+          postTitle.textContent = title;
+          document.title = title + ' | Devansh Sharma';
+          var bits = [];
+          if (fm.meta.date) bits.push('<span>' + fmtDate(fm.meta.date) + '</span>');
+          bits.push('<span>' + readingTime(fm.body) + ' min read</span>');
+          if (fm.meta.tags) bits.push('<span>' + esc(tagsText(fm.meta.tags)) + '</span>');
+          postMeta.innerHTML = bits.join('');
+          postBody.innerHTML = md(fm.body);
         })
-        .then(text => {
-          const { meta, body } = parseFrontMatter(text);
-          postTitle.textContent = meta.title || slug;
-          document.title = (meta.title || slug) + ' | Devansh Sharma';
-          const mins = readingTime(body);
-          let metaHtml = '';
-          if (meta.date) metaHtml += '<span>' + meta.date + '</span>';
-          metaHtml += '<span>' + mins + ' min read</span>';
-          if (meta.tags && Array.isArray(meta.tags)) {
-            metaHtml += renderTags(meta.tags);
-          }
-          postMeta.innerHTML = metaHtml;
-          postContent.innerHTML = marked.parse(body);
-        })
-        .catch(() => {
+        .catch(function () {
           postTitle.textContent = 'Post not found';
-          postContent.innerHTML = '<p>Sorry, this post doesn\'t exist. <a href="blog.html">Back to blog</a>.</p>';
+          postBody.innerHTML = '<p>This post doesn\'t exist. <a href="blog.html">See all posts</a>.</p>';
         });
     }
-  }
-
-  // --- Notes ---
-  const notesList = document.getElementById('notes-list');
-  if (notesList) {
-    fetch('content/notes/index.json')
-      .then(r => r.json())
-      .then(notes => {
-        if (!notes.length) {
-          notesList.innerHTML = '<p class="loading-msg">No notes yet.</p>';
-          return;
-        }
-        Promise.all(
-          notes.sort((a, b) => new Date(b.date) - new Date(a.date)).map(note =>
-            fetch('content/notes/' + note.file)
-              .then(r => r.text())
-              .then(text => {
-                const { meta, body } = parseFrontMatter(text);
-                return { ...note, ...meta, body };
-              })
-          )
-        ).then(entries => {
-          notesList.innerHTML = entries.map(n => {
-            const tags = n.tags ? (Array.isArray(n.tags) ? n.tags : [n.tags]) : [];
-            const tagsHtml = tags.length
-              ? '<div class="note-tags">' + tags.map(t => '<span>' + t + '</span>').join('') + '</div>'
-              : '';
-            return `<div class="note-entry">
-              <h3>${n.title}</h3>
-              <div class="note-meta"><span>${n.date}</span></div>
-              <div class="note-body">${marked.parse(n.body)}</div>
-              ${tagsHtml}
-            </div>`;
-          }).join('');
-        });
-      })
-      .catch(() => {
-        notesList.innerHTML = '<p class="loading-msg">No notes yet.</p>';
-      });
   }
 
 })();
